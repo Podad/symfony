@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Accueil
+{% endblock %}
+
+{% block body %}
+	<h1>Nos produit phare</h1>
+	<div class="row">
+		{% for p in product %}
+			<div class="col">
+				<div class="card">
+					<img src="{{ p.mainPicture }}" class="img-fluid" alt="">
+					<div class="card-body">
+						<h4 class="card-title">{{ p.name }}
+							({{p.price / 100}}&euro; )</h4>
+						<span class="badge badge-info">
+							{{p.category.name}}
+						</span>
+						<p class="card-texte">
+							{{ p.shortDescription }}
+						</p>
+						<a href="{{ path('product_show', { 'category_slug' : p.category.slug, 'slug' : p.slug }) }}" class="btn btn-primary btn-sm">Détail</a>
+						<a href="#" class="btn btn-succcess btn-sm">Ajouter</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<hr>
+	<h2>Un service irreprochable</h2>
+
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, magnam.</p>
+
+	<div class="row">
+		{% include "shared/_assurance.html.twig" with {
+                'color' : 'primary',
+                'icone' : 'fas fa-truck',
+                'texte' : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit asperiores eum quisquam excepturi voluptatibus neque."
+            } %}
+		{% include "shared/_assurance.html.twig" with {
+                'color' : 'success',
+                'icone' : 'fas fa-check',
+                'texte' : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit asperiores eum quisquam excepturi voluptatibus neque."
+            } %}
+		{% include "shared/_assurance.html.twig" with {
+                'color' : 'warning',
+                'icone' : 'fas fa-lock',
+                'texte' : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit asperiores eum quisquam excepturi voluptatibus neque."
+            } %}
+
+	</div>
+{% endblock %}
+
